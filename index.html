@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>বাংলার বাজার</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #fff8e6;
+    }
+    h1 {
+      text-align: center;
+      color: #b35a00;
+    }
+    h3 {
+      text-align: center;
+      color: #444;
+    }
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    table, th, td {
+      border: 1px solid #999;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+      text-align: center;
+    }
+    #grand-total {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+      color: #b30000;
+    }
+  </style>
+</head>
+<body>
+  <h1>বাংলার বাজার</h1>
+  <h3>বিশুদ্ধ পণ্যে ভরসার দোকান</h3>
+  <p>গৃহস্থালির সকল দরকারী চাল‑ডাল সহজ দামে আপনার ঘরে পৌঁছে যাবে। নিচের তালিকা থেকে প্রয়োজন অনুযায়ী পরিমাণ লিখুন।</p>
+
+  <table>
+    <tr>
+      <th>ইমেজ</th>
+      <th>প্রোডাক্ট নাম</th>
+      <th>দাম (₹/কেজি)</th>
+      <th>কোয়েন্টিটি (কেজি)</th>
+      <th>টোটাল দাম</th>
+    </tr>
+
+    <!-- চাল - মিনিকেট -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>মিনিকেট চাল</td>
+      <td>50</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="50"></td>
+      <td class="total">0</td>
+    </tr>
+
+    <!-- চাল - জিরাকাঠি -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>জিরাকাঠি চাল</td>
+      <td>55</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="55"></td>
+      <td class="total">0</td>
+    </tr>
+
+    <!-- চাল - বাসকাঠি -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>বাসকাঠি চাল</td>
+      <td>70</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="70"></td>
+      <td class="total">0</td>
+    </tr>
+
+    <!-- ডাল - মটর -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>মটর ডাল</td>
+      <td>80</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="80"></td>
+      <td class="total">0</td>
+    </tr>
+
+    <!-- ডাল - মুসুর -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>মুসুর ডাল</td>
+      <td>100</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="100"></td>
+      <td class="total">0</td>
+    </tr>
+
+    <!-- ডাল - মুগ -->
+    <tr>
+      <td><img src="https://via.placeholder.com/80" /></td>
+      <td>মুগ ডাল</td>
+      <td>120</td>
+      <td><input type="number" min="0" value="0" oninput="calc()" class="qty" data-price="120"></td>
+      <td class="total">0</td>
+    </tr>
+
+  </table>
+
+  <div id="grand-total">মোট অর্ডার মূল্য: ₹ 0</div>
+
+  <script>
+    function calc() {
+      let qty = document.querySelectorAll('.qty');
+      let totalCells = document.querySelectorAll('.total');
+      let grand = 0;
+
+      qty.forEach((q, i) => {
+        let price = q.dataset.price;
+        let subtotal = q.value * price;
+        totalCells[i].textContent = subtotal;
+        grand += subtotal;
+      });
+
+      document.getElementById('grand-total').textContent = "মোট অর্ডার মূল্য: ₹ " + grand;
+    }
+  </script>
+</body>
+</html>
