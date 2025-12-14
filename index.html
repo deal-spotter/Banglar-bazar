@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বৈদিক बाजारः - বিশুদ্ধ ভারতীয় পণ্যের বাজার</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&family=Tiro+Devanagari+Sanskrit&display=swap">
+    <style>
+        :root {
+            --saffron-primary: #FF9933;
+            --saffron-light: #FFB366;
+            --saffron-dark: #CC6600;
+            --off-white: #FFF8F0;
+            --dark-brown: #5C4033;
+            --light-beige: #F5E6D3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: var(--off-white);
+            color: var(--dark-brown);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* হেডার ও নেভিগেশন */
+        header {
+            background-color: var(--saffron-primary);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            font-size: 2.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--saffron-dark);
+        }
+        
+        /* হিরো সেকশন */
+        .hero {
+            background: linear-gradient(to right, var(--saffron-light), var(--saffron-primary));
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .hero h1 {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--off-white);
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* পণ্য সেকশন */
+        .products-section {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--saffron-dark);
+            margin-bottom: 40px;
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--saffron-primary);
+            margin: 10px auto;
+        }
+        
+        .category {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--saffron-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--saffron-light);
+        }
+        
+        /* পণ্য টেবিল */
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .products-table th {
+            background-color: var(--saffron-primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .products-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-beige);
+            background-color: white;
+        }
+        
+        .products-table tr:hover td {
+            background-color: var(--off-white);
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--saffron-light);
+        }
+        
+        .quantity-input {
+            width: 80px;
+            padding: 8px 10px;
+            border: 2px solid var(--saffron-light);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .total-price {
+            font-weight: bold;
+            color: var(--saffron-dark);
+        }
+        
+        /* অর্ডার সারাংশ */
+        .order-summary {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+            border-top: 5px solid var(--saffron-primary);
+        }
+        
+        .summary-title {
+            font-size: 1.8rem;
+            color: var(--saffron-dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .summary-details {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .summary-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--off-white);
+            border-radius: 8px;
+            min-width: 200px;
+        }
+        
+        .summary-item h3 {
+            color: var(--saffron-dark);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .summary-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--saffron-primary);
+        }
+        
+        /* ফুটার */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--saffron-light);
+        }
+        
+        /* রেসপন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .logo, .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .products-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .products-table th,
+            .products-table td {
+                padding: 10px;
+            }
+            
+            .summary-details {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* পণ্য আইকন */
+        .product-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .rice-icon {
+            background-color: #FFD700;
+            border-radius: 50%;
+        }
+        
+        .dal-icon {
+            background-color: #CD853F;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার ও নেভিগেশন -->
+    <header>
+        <div class="container">
+            <div class="logo">বৈदिक बाजारः</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#rice">চাল</a></li>
+                    <li><a href="#dal">ডাল</a></li>
+                    <li><a href="#spices">মশলা</a></li>
+                    <li><a href="#oil">তেল</a></li>
+                    <li><a href="#sweets">মিষ্টি</a></li>
+                    <li><a href="#summary">অর্ডার সারাংশ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>বৈदिक बाजारः</h1>
+            <div class="subtitle">গুণগতমানের প্রতিশ্রুতি, परंपरा का सम्मान</div>
+            <div class="description">
+                বৈদিক বাজার হল একটি অনলাইন মার্কেটপ্লেস যেখানে আপনি পাবেন প্রাচীন ভারতীয় গুণমানের সাথে তৈরি খাদ্যপণ্য। আমাদের প্রতিটি পণ্য নির্বাচন করা হয় স্বাস্থ্য ও পরিবেশের কথা চিন্তা করে। আমরা বৈদিক পদ্ধতিতে চাষ করা শস্য ও ডাল সরাসরি কৃষকদের কাছ থেকে সংগ্রহ করে আপনাকে পৌঁছে দিই।
+            </div>
+        </div>
+    </section>
+
+    <!-- পণ্য সেকশন -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">আমাদের বিশুদ্ধ পণ্যসমূহ</h2>
+            
+            <!-- চাল বিভাগ -->
+            <div class="category" id="rice">
+                <h3 class="category-title">
+                    <span class="product-icon rice-icon"></span>
+                    চাল
+                </h3>
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>ইমেজ</th>
+                            <th>প্রোডাক্ট নাম</th>
+                            <th>দাম</th>
+                            <th>কোয়ান্টিটি (কেজি)</th>
+                            <th>মোট দাম</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rice-products">
+                        <!-- চালের পণ্যগুলো এখানে যোগ হবে -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- ডাল বিভাগ -->
+            <div class="category" id="dal">
+                <h3 class="category-title">
+                    <span class="product-icon dal-icon"></span>
+                    ডাল
+                </h3>
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>ইমেজ</th>
+                            <th>প্রোডাক্ট নাম</th>
+                            <th>দাম</th>
+                            <th>কোয়ান্টিটি (কেজি)</th>
+                            <th>মোট দাম</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dal-products">
+                        <!-- ডালের পণ্যগুলো এখানে যোগ হবে -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- অর্ডার সারাংশ -->
+            <div class="order-summary" id="summary">
+                <h2 class="summary-title">অর্ডার সারাংশ</h2>
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <h3>মোট পণ্য সংখ্যা</h3>
+                        <div class="summary-value" id="total-items">0</div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>মোট পরিমাণ (কেজি)</h3>
+                        <div class="summary-value" id="total-quantity">0</div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>মোট মূল্য</h3>
+                        <div class="summary-value" id="total-price">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">বৈदिक बाजारः</div>
+            <p>বৈদিক পদ্ধতিতে উৎপাদিত বিশুদ্ধ ভারতীয় পণ্য</p>
+            <p>© 2023 বৈदिक बाजारः। সর্বস্বত্ব সংরক্ষিত।</p>
+            <p>যোগাযোগ: info@vaidicbazaar.com | ফোন: +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+        </div>
+    </footer>
+
+    <script>
+        // পণ্যের তথ্য
+        const products = {
+            rice: [
+                { id: 1, name: "মিনিকেট", price: 50, image: "https://via.placeholder.com/80x80/FFD700/000000?text=মিনিকেট" },
+                { id: 2, name: "জিরাকাঠি", price: 55, image: "https://via.placeholder.com/80x80/FFD700/000000?text=জিরাকাঠি" },
+                { id: 3, name: "বাসকাঠি", price: 70, image: "https://via.placeholder.com/80x80/FFD700/000000?text=বাসকাঠি" }
+            ],
+            dal: [
+                { id: 4, name: "মটর ডাল", price: 80, image: "https://via.placeholder.com/80x80/CD853F/FFFFFF?text=মটর+ডাল" },
+                { id: 5, name: "মুসুর ডাল", price: 100, image: "https://via.placeholder.com/80x80/CD853F/FFFFFF?text=মুসুর+ডাল" },
+                { id: 6, name: "মুগ ডাল", price: 120, image: "https://via.placeholder.com/80x80/CD853F/FFFFFF?text=মুগ+ডাল" }
+            ]
+        };
+        
+        // অর্ডার তথ্য সংরক্ষণের অবজেক্ট
+        let orderData = {};
+        
+        // পৃষ্ঠা লোড হলে পণ্য তালিকা দেখাবে
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateOrderSummary();
+        });
+        
+        // পণ্য তালিকা রেন্ডার ফাংশন
+        function renderProducts() {
+            const riceTable = document.getElementById('rice-products');
+            const dalTable = document.getElementById('dal-products');
+            
+            // চালের পণ্যগুলো যোগ করি
+            products.rice.forEach(product => {
+                const row = createProductRow(product, 'rice');
+                riceTable.appendChild(row);
+                // অর্ডার ডাটাতে প্রাথমিক মান সেট করি
+                orderData[product.id] = { quantity: 0, total: 0, category: 'rice' };
+            });
+            
+            // ডালের পণ্যগুলো যোগ করি
+            products.dal.forEach(product => {
+                const row = createProductRow(product, 'dal');
+                dalTable.appendChild(row);
+                // অর্ডার ডাটাতে প্রাথমিক মান সেট করি
+                orderData[product.id] = { quantity: 0, total: 0, category: 'dal' };
+            });
+        }
+        
+        // পণ্য সারি তৈরি ফাংশন
+        function createProductRow(product, category) {
+            const row = document.createElement('tr');
+            row.id = `product-${product.id}`;
+            
+            row.innerHTML = `
+                <td><img src="${product.image}" alt="${product.name}" class="product-image"></td>
+                <td>${product.name}</td>
+                <td>₹ ${product.price}/কেজি</td>
+                <td>
+                    <input type="number" min="0" step="0.5" value="0" class="quantity-input" 
+                           data-id="${product.id}" data-price="${product.price}" onchange="updateProductTotal(${product.id})">
+                </td>
+                <td class="total-price" id="total-${product.id}">₹ 0</td>
+            `;
+            
+            return row;
+        }
+        
+        // প্রতিটি পণ্যের মোট দাম আপডেট ফাংশন
+        function updateProductTotal(productId) {
+            const input = document.querySelector(`input[data-id="${productId}"]`);
+            const price = parseFloat(input.getAttribute('data-price'));
+            const quantity = parseFloat(input.value) || 0;
+            
+            const total = price * quantity;
+            
+            // মোট দাম দেখানো
+            document.getElementById(`total-${productId}`).textContent = `₹ ${total.toFixed(2)}`;
+            
+            // অর্ডার ডাটা আপডেট
+            orderData[productId].quantity = quantity;
+            orderData[productId].total = total;
+            
+            // অর্ডার সারাংশ আপডেট
+            updateOrderSummary();
+        }
+        
+        // অর্ডার সারাংশ আপডেট ফাংশন
+        function updateOrderSummary() {
+            let totalItems = 0;
+            let totalQuantity = 0;
+            let totalPrice = 0;
+            
+            // সমস্ত পণ্যের তথ্য সংগ্রহ
+            for (const productId in orderData) {
+                if (orderData[productId].quantity > 0) {
+                    totalItems++;
+                    totalQuantity += orderData[productId].quantity;
+                    totalPrice += orderData[productId].total;
+                }
+            }
+            
+            // সারাংশ আপডেট
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('total-quantity').textContent = totalQuantity.toFixed(2);
+            document.getElementById('total-price').textContent = `₹ ${totalPrice.toFixed(2)}`;
+        }
+        
+        // নেভিগেশন লিঙ্ক ক্লিক করলে স্ক্রল এফেক্ট
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
